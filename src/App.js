@@ -1,5 +1,12 @@
+import { Outlet } from "react-router-dom";
+import Headers from "./components/Header";
 function App() {
-  return;
+  return (
+    <>
+      <Headers />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
