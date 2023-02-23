@@ -3,18 +3,20 @@ import { formatAgo } from "../util/date";
 import { useNavigate } from "react-router-dom";
 import Videos from "../pages/Videos";
 
-export default function VideoCard({ video }) {
+export default function VideoCard({ video, type }) {
   const navigate = useNavigate();
   const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+  const isList = type === "list";
 
   return (
     <li
+      className={isList ? "flex gap-1 m-20" : ""}
       onClick={() => {
-        navigate(`videos/watch/${video.id}`, { state: { video } });
+        navigate(`/videos/watch/${video.id}`, { state: { video } });
       }}
     >
       <img
-        className="w-full rounded-xl"
+        className={isList ? "w-60 mr-2" : "w-full"}
         src={thumbnails.medium.url}
         alt={title}
       />
