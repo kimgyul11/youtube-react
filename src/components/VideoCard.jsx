@@ -1,10 +1,18 @@
 import React from "react";
 import { formatAgo } from "../util/date";
+import { useNavigate } from "react-router-dom";
+import Videos from "../pages/Videos";
 
 export default function VideoCard({ video }) {
+  const navigate = useNavigate();
   const { title, channelTitle, publishedAt, thumbnails } = video.snippet;
+
   return (
-    <li>
+    <li
+      onClick={() => {
+        navigate(`videos/watch/${video.id}`, { state: { video } });
+      }}
+    >
       <img
         className="w-full rounded-xl"
         src={thumbnails.medium.url}
